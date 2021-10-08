@@ -76,7 +76,6 @@ namespace TPVdinámico
             total += Convert.ToDecimal(fila[3]);
 
             label1.Text = total.ToString();
-            //miao
         }
 
         private void buttonNuevoCliente_Click(object sender, EventArgs e)
