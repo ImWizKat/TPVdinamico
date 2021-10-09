@@ -49,9 +49,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="itextsharp">
-      <HintPath>..\..\..\Desktop\itextsharp.dll</HintPath>
+      <HintPath>..\..\..\Desktop\DAW\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\..\Desktop\DAW\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -65,6 +68,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="claseConectarBD.cs" />
+    <Compile Include="claseFruta.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
