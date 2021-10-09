@@ -22,6 +22,8 @@ namespace TPVdinámico
         claseConectarBD conex = new claseConectarBD();
 
         List<claseFruta> frutas;
+
+        //este segundo array está para recuperar los datos de stock modificados si el cobro no se realiza
         List<claseFruta> frutasBackup;
 
         decimal total = 0;
