@@ -1,7 +1,7 @@
 ﻿
 namespace TPVdinámico
 {
-    partial class Form1
+    partial class TPVFrutas
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -31,6 +31,12 @@ namespace TPVdinámico
         {
             this.panelBotones = new System.Windows.Forms.FlowLayoutPanel();
             this.tablaCarrito = new System.Windows.Forms.DataGridView();
+            this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Peso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ValorParcial = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Procedencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonNuevoCliente = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonEmail = new System.Windows.Forms.Button();
@@ -42,12 +48,6 @@ namespace TPVdinámico
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.textBoxMail = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Peso = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ValorParcial = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Procedencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tablaCarrito)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -61,10 +61,9 @@ namespace TPVdinámico
             this.panelBotones.Size = new System.Drawing.Size(482, 362);
             this.panelBotones.TabIndex = 6;
             // 
-            // carrito
+            // tablaCarrito
             // 
             this.tablaCarrito.AllowUserToAddRows = false;
-            this.tablaCarrito.AllowUserToDeleteRows = false;
             this.tablaCarrito.AllowUserToOrderColumns = true;
             this.tablaCarrito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaCarrito.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -75,10 +74,47 @@ namespace TPVdinámico
             this.Procedencia,
             this.Stock});
             this.tablaCarrito.Location = new System.Drawing.Point(6, 0);
-            this.tablaCarrito.Name = "carrito";
+            this.tablaCarrito.Name = "tablaCarrito";
             this.tablaCarrito.ReadOnly = true;
             this.tablaCarrito.Size = new System.Drawing.Size(643, 277);
             this.tablaCarrito.TabIndex = 1;
+            this.tablaCarrito.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.tablaCarrito_UserDeletedRow);
+            // 
+            // Producto
+            // 
+            this.Producto.HeaderText = "Producto";
+            this.Producto.Name = "Producto";
+            this.Producto.ReadOnly = true;
+            // 
+            // PrecioUnitario
+            // 
+            this.PrecioUnitario.HeaderText = "PrecioUnitario";
+            this.PrecioUnitario.Name = "PrecioUnitario";
+            this.PrecioUnitario.ReadOnly = true;
+            // 
+            // Peso
+            // 
+            this.Peso.HeaderText = "Peso";
+            this.Peso.Name = "Peso";
+            this.Peso.ReadOnly = true;
+            // 
+            // ValorParcial
+            // 
+            this.ValorParcial.HeaderText = "ValorParcial";
+            this.ValorParcial.Name = "ValorParcial";
+            this.ValorParcial.ReadOnly = true;
+            // 
+            // Procedencia
+            // 
+            this.Procedencia.HeaderText = "Procedencia";
+            this.Procedencia.Name = "Procedencia";
+            this.Procedencia.ReadOnly = true;
+            // 
+            // Stock
+            // 
+            this.Stock.HeaderText = "Stock";
+            this.Stock.Name = "Stock";
+            this.Stock.ReadOnly = true;
             // 
             // buttonNuevoCliente
             // 
@@ -131,7 +167,6 @@ namespace TPVdinámico
             this.groupBox1.Size = new System.Drawing.Size(650, 362);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
             this.groupBox1.Visible = false;
             // 
             // groupBox2
@@ -143,7 +178,6 @@ namespace TPVdinámico
             this.groupBox2.Size = new System.Drawing.Size(469, 50);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
             this.groupBox2.Visible = false;
             // 
             // label2
@@ -173,7 +207,6 @@ namespace TPVdinámico
             this.groupBox3.Size = new System.Drawing.Size(481, 50);
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "groupBox3";
             this.groupBox3.Visible = false;
             // 
             // textBoxMail
@@ -193,43 +226,7 @@ namespace TPVdinámico
             this.label3.TabIndex = 5;
             this.label3.Text = "Introduce el mail del cliente + enter";
             // 
-            // Producto
-            // 
-            this.Producto.HeaderText = "Producto";
-            this.Producto.Name = "Producto";
-            this.Producto.ReadOnly = true;
-            // 
-            // PrecioUnitario
-            // 
-            this.PrecioUnitario.HeaderText = "PrecioUnitario";
-            this.PrecioUnitario.Name = "PrecioUnitario";
-            this.PrecioUnitario.ReadOnly = true;
-            // 
-            // Peso
-            // 
-            this.Peso.HeaderText = "Peso";
-            this.Peso.Name = "Peso";
-            this.Peso.ReadOnly = true;
-            // 
-            // ValorParcial
-            // 
-            this.ValorParcial.HeaderText = "ValorParcial";
-            this.ValorParcial.Name = "ValorParcial";
-            this.ValorParcial.ReadOnly = true;
-            // 
-            // Procedencia
-            // 
-            this.Procedencia.HeaderText = "Procedencia";
-            this.Procedencia.Name = "Procedencia";
-            this.Procedencia.ReadOnly = true;
-            // 
-            // Stock
-            // 
-            this.Stock.HeaderText = "Stock";
-            this.Stock.Name = "Stock";
-            this.Stock.ReadOnly = true;
-            // 
-            // Form1
+            // TPVFrutas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -239,8 +236,8 @@ namespace TPVdinámico
             this.Controls.Add(this.buttonCargar);
             this.Controls.Add(this.panelBotones);
             this.Controls.Add(this.groupBox1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "TPVFrutas";
+            this.Text = "TPVFrutas";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tablaCarrito)).EndInit();
             this.groupBox1.ResumeLayout(false);

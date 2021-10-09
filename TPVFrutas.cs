@@ -17,7 +17,7 @@ using System.Windows.Forms;
 
 namespace TPVdinámico
 {
-    public partial class Form1 : Form
+    public partial class TPVFrutas : Form
     {
         claseConectarBD conex = new claseConectarBD();
 
@@ -28,7 +28,7 @@ namespace TPVdinámico
 
         decimal total = 0;
 
-        public Form1()
+        public TPVFrutas()
         {
             InitializeComponent();
         }
@@ -129,9 +129,7 @@ namespace TPVdinámico
                         {
                             fruta.Stock = frutaCompra.Stock;
                         }
-
                     }
-
                 }
             }
             catch (System.FormatException)
@@ -297,6 +295,15 @@ namespace TPVdinámico
             tablaCarrito.Rows.Clear();
         }
 
-
+        private void tablaCarrito_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {    
+            foreach (claseFruta fruta in frutas)
+            {
+                if (fruta.Nombre.Equals(e.Row.Cells[0].Value.ToString()))
+                {                    
+                    fruta.Stock += Convert.ToDecimal(e.Row.Cells[2].Value);
+                }
+            }
+        }
     }
 }
