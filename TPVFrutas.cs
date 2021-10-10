@@ -38,6 +38,18 @@ namespace TPVdinámico
         }
         private void buttonNuevoCliente_Click(object sender, EventArgs e)
         {
+            foreach (claseFruta fruta in frutas)
+            {
+                foreach (DataGridViewRow row in dataGridCarrito.Rows)
+                {
+                    if (row.Cells[0].Value.Equals(fruta.Nombre))
+                    {
+                        //si el stock no coincide, sumarle el peso guardado para dejarlo como estaba
+                        fruta.Stock = fruta.Stock + (Convert.ToDecimal(row.Cells[2].Value.ToString()));
+                        
+                    }
+                }
+            }
             reset();
         }
 
@@ -69,8 +81,8 @@ namespace TPVdinámico
                 //fotos
                 WebClient wc = new WebClient();
                 MemoryStream ms = new MemoryStream(frutas[a].Imagen);
-                System.Drawing.Image imagen = System.Drawing.Image.FromStream(ms);
-                btnX.Image = imagen;
+                System.Drawing.Image imagen = System.Drawing.Image.FromStream(ms);                
+                btnX.BackgroundImage = imagen;
 
                 //colocarlos y guardar el objeto en su Tag
                 btnX.BackgroundImageLayout = ImageLayout.Zoom;
@@ -117,7 +129,7 @@ namespace TPVdinámico
                                         frutaCompra.Procedencia.ToString(),
                                         calculoStock.ToString()};
 
-                    tablaCarrito.Rows.Add(fila);
+                    dataGridCarrito.Rows.Add(fila);
                     total += Convert.ToDecimal(fila[3]);
                     label1.Text = total.ToString();
 
@@ -162,6 +174,7 @@ namespace TPVdinámico
             {
                 groupBox2.Visible = false;
                 groupBox3.Visible = false;
+                textBoxContraseña.Enabled = true;
                 if (enviarMail())
                 {
                     //limpiamos los textbox y avisamos de que se ha enviado
@@ -185,30 +198,32 @@ namespace TPVdinámico
 
         private void generarPDF()
         {
-            PdfPTable pdfTable = new PdfPTable(tablaCarrito.ColumnCount);
+            PdfPTable pdfTable = new PdfPTable(dataGridCarrito.ColumnCount);
 
             //padding
-            pdfTable.DefaultCell.Padding = 10;
+            pdfTable.DefaultCell.Padding = 15;
 
             //ancho que va a ocupar la tabla en el pdf
-            pdfTable.WidthPercentage = 50;
+            pdfTable.WidthPercentage = 100;
 
             //alineación
             pdfTable.HorizontalAlignment = Element.ALIGN_LEFT;
 
             //borde de las tablas
-            pdfTable.DefaultCell.BorderWidth = 1;
+            pdfTable.DefaultCell.BorderWidth = 2;
 
             //Añadir fila de cabecera
-            foreach (DataGridViewColumn column in tablaCarrito.Columns)
+            foreach (DataGridViewColumn column in dataGridCarrito.Columns)
             {
                 PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText));
                 cell.BackgroundColor = new iTextSharp.text.BaseColor(214, 50, 240);
+                cell.Padding = 20;
+                cell.BorderWidth = 3;
                 pdfTable.AddCell(cell);
             }
 
             //añadir filas
-            foreach (DataGridViewRow row in tablaCarrito.Rows)
+            foreach (DataGridViewRow row in dataGridCarrito.Rows)
             {
                 foreach (DataGridViewCell cell in row.Cells)
                 {
@@ -224,9 +239,9 @@ namespace TPVdinámico
             PdfPCell cellTotal = new PdfPCell(new Phrase("Total: " + total + " euros"));
             cellTotal.BackgroundColor = new iTextSharp.text.BaseColor(214, 50, 240);
 
-            for (int i = 0; i < tablaCarrito.Columns.Count; i++)
+            for (int i = 0; i < dataGridCarrito.Columns.Count; i++)
             {
-                if (i == tablaCarrito.Columns.Count - 1) pdfTable.AddCell(cellTotal);
+                if (i == dataGridCarrito.Columns.Count - 1) pdfTable.AddCell(cellTotal);
                 else pdfTable.AddCell("");
             }
 
@@ -279,7 +294,12 @@ namespace TPVdinámico
                 smtpClient.Credentials = loginInfo;
                 smtpClient.Send(msg);
                 smtpClient.Dispose();
+                attachment.Dispose();
                 resultado = true;
+
+                //si la compra se realiza correctamente, actualizo los datos del array de seguridad y tener una copia segura del stock cada compra consecutiva
+                frutasBackup = frutas;
+                
             }
             catch (Exception ex)
             {
@@ -291,12 +311,14 @@ namespace TPVdinámico
         private void reset()
         {
             total = 0;
-            label1.Text = total.ToString();
-            tablaCarrito.Rows.Clear();
+            label1.Text = total.ToString();            
+            dataGridCarrito.Rows.Clear();
         }
 
         private void tablaCarrito_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {    
+            //un foreach para cambiar el stock en el array frutas
+
             foreach (claseFruta fruta in frutas)
             {
                 if (fruta.Nombre.Equals(e.Row.Cells[0].Value.ToString()))
@@ -304,6 +326,20 @@ namespace TPVdinámico
                     fruta.Stock += Convert.ToDecimal(e.Row.Cells[2].Value);
                 }
             }
+
+            // y otro para cambiar el stock representado en el datagrid
+
+            foreach (claseFruta fruta in frutas) {
+
+                foreach (DataGridViewRow row in dataGridCarrito.Rows)
+                {
+                    if (row.Cells[0].Value.Equals(fruta.Nombre)) {
+                        row.Cells[5].Value = fruta.Stock.ToString();
+                    }
+                }
+            }
+
+
         }
     }
 }

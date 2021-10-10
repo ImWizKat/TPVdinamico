@@ -30,7 +30,7 @@ namespace TPVdinámico
         private void InitializeComponent()
         {
             this.panelBotones = new System.Windows.Forms.FlowLayoutPanel();
-            this.tablaCarrito = new System.Windows.Forms.DataGridView();
+            this.dataGridCarrito = new System.Windows.Forms.DataGridView();
             this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Peso = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,7 +48,7 @@ namespace TPVdinámico
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.textBoxMail = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaCarrito)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridCarrito)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -61,24 +61,24 @@ namespace TPVdinámico
             this.panelBotones.Size = new System.Drawing.Size(482, 362);
             this.panelBotones.TabIndex = 6;
             // 
-            // tablaCarrito
+            // dataGridCarrito
             // 
-            this.tablaCarrito.AllowUserToAddRows = false;
-            this.tablaCarrito.AllowUserToOrderColumns = true;
-            this.tablaCarrito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tablaCarrito.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridCarrito.AllowUserToAddRows = false;
+            this.dataGridCarrito.AllowUserToOrderColumns = true;
+            this.dataGridCarrito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridCarrito.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Producto,
             this.PrecioUnitario,
             this.Peso,
             this.ValorParcial,
             this.Procedencia,
             this.Stock});
-            this.tablaCarrito.Location = new System.Drawing.Point(6, 0);
-            this.tablaCarrito.Name = "tablaCarrito";
-            this.tablaCarrito.ReadOnly = true;
-            this.tablaCarrito.Size = new System.Drawing.Size(643, 277);
-            this.tablaCarrito.TabIndex = 1;
-            this.tablaCarrito.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.tablaCarrito_UserDeletedRow);
+            this.dataGridCarrito.Location = new System.Drawing.Point(6, 0);
+            this.dataGridCarrito.Name = "dataGridCarrito";
+            this.dataGridCarrito.ReadOnly = true;
+            this.dataGridCarrito.Size = new System.Drawing.Size(643, 277);
+            this.dataGridCarrito.TabIndex = 1;
+            this.dataGridCarrito.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.tablaCarrito_UserDeletedRow);
             // 
             // Producto
             // 
@@ -122,7 +122,7 @@ namespace TPVdinámico
             this.buttonNuevoCliente.Name = "buttonNuevoCliente";
             this.buttonNuevoCliente.Size = new System.Drawing.Size(83, 79);
             this.buttonNuevoCliente.TabIndex = 4;
-            this.buttonNuevoCliente.Text = "Nuevo Cliente";
+            this.buttonNuevoCliente.Text = "Cancelar compra Nuevo cliente";
             this.buttonNuevoCliente.UseVisualStyleBackColor = true;
             this.buttonNuevoCliente.Click += new System.EventHandler(this.buttonNuevoCliente_Click);
             // 
@@ -158,7 +158,7 @@ namespace TPVdinámico
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.tablaCarrito);
+            this.groupBox1.Controls.Add(this.dataGridCarrito);
             this.groupBox1.Controls.Add(this.buttonEmail);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.buttonNuevoCliente);
@@ -239,7 +239,7 @@ namespace TPVdinámico
             this.Name = "TPVFrutas";
             this.Text = "TPVFrutas";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.tablaCarrito)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridCarrito)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -252,7 +252,7 @@ namespace TPVdinámico
 
         #endregion
         private System.Windows.Forms.FlowLayoutPanel panelBotones;
-        private System.Windows.Forms.DataGridView tablaCarrito;
+        private System.Windows.Forms.DataGridView dataGridCarrito;
         private System.Windows.Forms.Button buttonNuevoCliente;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonEmail;
